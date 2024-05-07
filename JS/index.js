@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Preguntar nombre y edad al usuario
+  const name = prompt("Por favor, ingresa tu nombre:");
+  const age = prompt("Por favor, ingresa tu edad:");
+
+  // Guardar nombre y edad en el LocalStorage
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userAge", age);
+
   const container = document.createElement("div");
   container.classList.add("container");
 
@@ -83,15 +91,19 @@ document.addEventListener("DOMContentLoaded", function () {
   artistSelect.addEventListener("change", function () {
     const selectedArtist = artistSelect.value;
     if (selectedArtist) {
+      const userName = localStorage.getItem("userName");
+      alert(`Perfecto ${userName}, tu artista favorito es: ${selectedArtist}`);
+
+      localStorage.setItem("favoriteArtist", selectedArtist);
+
       artistImage.src = artistImages[selectedArtist];
       artistImageContainer.style.display = "block";
     } else {
-      a;
       artistImageContainer.style.display = "none";
     }
   });
 
-  // Función para llenar el selector de artistas basado en el género seleccionado
+  // Función llenar el selector de artistas basado en el género seleccionado
   function fillArtists(genre, artistSelect) {
     artistSelect.innerHTML = "";
 
